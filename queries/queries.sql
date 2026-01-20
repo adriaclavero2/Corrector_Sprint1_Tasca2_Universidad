@@ -55,19 +55,19 @@ WHERE cuatrimestre = 1
 
 -- 6. Retorna un llistat dels professors/es juntament amb el nom del departament al qual estan vinculats. El llistat ha de retornar quatre columnes, primer cognom, segon cognom, nom i nom del departament. El resultat estarà ordenat alfabèticament de menor a major pels cognoms i el nom. (apellido1, apellido2, nombre, departamento)
 SELECT
-persona.apellido1, 
-persona.apellido2, 
-persona.nombre, 
-departamento.nombre
+    persona.apellido1,
+    persona.apellido2,
+    persona.nombre,
+    departamento.nombre AS 'departamento'
 FROM persona
 JOIN profesor
-	ON persona.id = profesor.id_profesor
+    ON persona.id = profesor.id_profesor
 JOIN departamento
-	ON profesor.id_departamento = departamento.id
+    ON profesor.id_departamento = departamento.id
 WHERE persona.tipo = 'profesor'
-ORDER BY persona.apellido1 ASC, 
-		 persona.apellido2 ASC, 
-		 persona.nombre ASC; 
+ORDER BY persona.apellido1 ASC,
+         persona.apellido2 ASC,
+         persona.nombre ASC;
 
 -- 7. Retorna un llistat amb el nom de les assignatures, any d'inici i any de fi del curs escolar de l'alumne/a amb NIF 26902806M. (nombre, anyo_inicio, anyo_fin)
 SELECT
@@ -80,7 +80,7 @@ JOIN alumno_se_matricula_asignatura
 JOIN asignatura
     ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id
 JOIN curso_escolar
-    ON asignatura.id_curso_escolar = curso_escolar.id
+    ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id
 WHERE persona.nif = '26902806M';
 
 -- 8. Retorna un llistat amb el nom de tots els departaments que tenen professors/es que imparteixen alguna assignatura en el Grau en Enginyeria Informàtica (Pla 2015). (nombre)
@@ -106,7 +106,7 @@ JOIN alumno_se_matricula_asignatura
 JOIN asignatura
     ON alumno_se_matricula_asignatura.id_asignatura = asignatura.id
 JOIN curso_escolar
-    ON asignatura.id_curso_escolar = curso_escolar.id
+    ON alumno_se_matricula_asignatura.id_curso_escolar = curso_escolar.id
 WHERE curso_escolar.anyo_inicio = 2018
   AND curso_escolar.anyo_fin = 2019;
 
