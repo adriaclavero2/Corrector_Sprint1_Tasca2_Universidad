@@ -174,7 +174,7 @@ FROM departamento
 LEFT JOIN profesor
     ON departamento.id = profesor.id_departamento
 LEFT JOIN asignatura
-    ON profesor.id_profesor = asignatura.id_profesor
+    ON asignatura.id_profesor = profesor.id_profesor
 WHERE asignatura.id IS NULL;
 
 -- 16. Retorna el nombre total d'alumnes que hi ha. (total)
